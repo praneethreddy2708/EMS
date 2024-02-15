@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-dT2l7BUjp7k2EGI7IV46Ys5lF5PZLfyPYHxQM8hp8Ony7v7E2p6OVhJQ9Yg6djds" crossorigin="anonymous">
+    <style>
+
+        body{
+            background-color: #EEF5FF;
+
+        }
+header {
+    background-color: #F0ECE5;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #427D9D;
+    border: 1px solid #ddd;
+    color: #F0ECE5;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 300ms;
+    width: 100%;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .content {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    padding: 30px 20px 20px 20px;
+    height: 400px;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+}
+
+.card .date,
+.card .title {
+    margin: 0;
+}
+
+.card .date {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 4px;
+}
+
+.card .title {
+    font-size: 17px;
+    color: #fff;
+}
+
+.icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.card .card_data {
+    margin-top: 90px;
+    margin-left: 30px;
+    padding-bottom: 40px;
+}
+
+</style>
+</head>
+<body>
+    {% include 'adn_nav.html' %}
+<main>
+    <div class="card" >
+        <div class="card_data">
+            <i class="fas fa-building icon"></i>
+            <h2>Venues</h2>
+            <p>View and manage venues.</p>
+            <a href="/admin_venue">Go to Venues</a>
+        </div>
+    </div>
+
+    <div class="card" >
+        <div class="card_data">
+            <i class="fas fa-calendar-alt icon"></i>
+            <h2>Events</h2>
+            <p>Manage upcoming events.</p>
+            <a href="/admin_view_events">Go to Events</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card_data">
+            <i class="fas fa-handshake icon"></i>
+            <h2>Manage Requests</h2>
+            <p>Handle and respond to user requests.</p>
+            <a href="/org_approval">Go to Requests</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card_data">
+            <i class="fas fa-dollar-sign icon"></i>
+            <h2>Payments</h2>
+            <p>Track and manage payments.</p>
+            <a href="/admin_payments">Go to Payments</a>
+        </div>
+    </div>
+
+
+    
+</main>
+
+</body>
+</html>

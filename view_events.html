@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            justify-content: center;
+            margin-left: 2%;
+        }
+
+        .card {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            color: #4caf50; /* Green color for event name */
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+
+        .paid {
+            color: #2196f3; /* Blue color for paid events */
+        }
+
+        .unpaid {
+            color: #ff9800; /* Orange color for unpaid events */
+        }
+
+        .open {
+            color: #4caf50; /* Green color for open events */
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'atten_nav.html' %}
+    <h1>All Events</h1>
+    <div class="card-container">
+        {% for event in events %}
+            <a href="/event/{{ event._id }}" class="card">
+                <h2>{{ event.event_name }}</h2>
+                <h3 class="{{ event.event_type | lower }}">{{ event.event_type }}</h3>
+                <p><strong>Location:</strong> {{ event.venue }}</p>
+                <p><strong>Date:</strong> {{ event.date }}</p>
+                <p><strong>Description:</strong> {{ event.event_description }}</p>
+                {% if event.event_type == 'paid' %}
+                    <p><strong>Capacity:</strong> {{ event.capacity }}, <strong>Price:</strong> {{ event.ticket_price }}</p>
+                {% else %}
+                    <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>

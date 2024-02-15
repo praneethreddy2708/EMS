@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <!-- Link to your CSS file -->
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            width: 100%; /* Make the button full width */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Create Event</h1>
+
+    <div class="form-container">
+        <form action="/submit-event" method="post">
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" required>
+
+            <label for="eventType">Event Type:</label>
+            <select id="eventType" name="eventType" onchange="toggleInputs()" required>
+                <option value="paid">Paid Event</option>
+                <option value="unpaid">Unpaid Event</option>
+                <option value="open">Open Event</option>
+            </select>
+
+            <div id="capacityInput" class="hidden">
+                <label for="capacity">Capacity:</label>
+                <input type="number" id="capacity" name="capacity">
+            </div>
+
+            <div id="ticketPriceInput" class="hidden">
+                <label for="ticketPrice">Ticket Price:</label>
+                <input type="number" id="ticketPrice" name="ticketPrice">
+            </div>
+
+            <label for="venue">Venue:</label>
+            <select id="venue" name="venue" required>
+                <!-- Iterate over the venues and dynamically generate options -->
+                {% for venue in venues %}
+                    <option value="{{ venue.venue_name }}">{{ venue.venue_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="eventDate">Event Date:</label>
+            <input type="date" id="eventDate" name="eventDate" required>
+
+            <label for="eventDescription">Event Description:</label>
+            <textarea id="eventDescription" name="eventDescription" rows="4" required></textarea>
+
+            <button type="submit">Create Event</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleInputs() {
+            var eventType = document.getElementById("eventType").value;
+            var capacityInput = document.getElementById("capacityInput");
+            var ticketPriceInput = document.getElementById("ticketPriceInput");
+
+            if (eventType === "paid") {
+                capacityInput.classList.remove("hidden");
+                ticketPriceInput.classList.remove("hidden");
+            } else if (eventType === "unpaid") {
+                capacityInput.classList.remove("hidden");
+                ticketPriceInput.classList.add("hidden");
+            } else {
+                capacityInput.classList.add("hidden");
+                ticketPriceInput.classList.add("hidden");
+            }
+        }
+    </script>
+
+</body>
+</html>

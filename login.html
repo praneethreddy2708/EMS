@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System - Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('/static/images/login.jpg'); /* Add background image URL */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.5); /* Add background color with transparency */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        input,
+        select {
+            margin-top: 5px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px; /* Add margin-top */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .register-link {
+            margin-top: 15px;
+        }
+
+        .register-link a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <form id="login-form" action="/" method="post">
+            <h2>Login</h2>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="admin">Admin</option>
+                <option value="organizers">Organizer</option>
+                <option value="attendees">Attendee</option>
+            </select>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="register-link">
+            <p>Don't have an account? <a href="/register">Register here</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Venue</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-group {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .checkbox-group label {
+            margin: 5px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Edit Venue</h1>
+
+        <form action="/update_venue/{{ venue._id }}" method="post">
+            <label for="new_venue_name">New Venue Name:</label>
+            <input type="text" id="new_venue_name" name="new_venue_name" value="{{ venue.venue_name }}" required>
+
+            <label>Amenities:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="new_amenities[]" value="water" {% if 'water' in venue.amenities %}checked{% endif %}> Water</label>
+                <label><input type="checkbox"name="new_amenities[]" value="food" {% if 'food' in venue.amenities %}checked{% endif %}> Food</label>
+                <label><input type="checkbox" name="new_amenities[]" value="parking" {% if 'parking' in venue.amenities %}checked{% endif %}> Parking</label>
+                <label><input type="checkbox" name="new_amenities[]" value="wifi" {% if 'wifi' in venue.amenities %}checked{% endif %}> WiFi</label>
+                <label><input type="checkbox" name="new_amenities[]" value="audio-visual" {% if 'audio-visual' in venue.amenities %}checked{% endif %}> Audio-Visual Equipment</label>
+                <label><input type="checkbox" name="new_amenities[]" value="seating" {% if 'seating' in venue.amenities %}checked{% endif %}> Seating</label>
+            </div> 
+            <label for="new_address">New Address:</label>
+            <textarea id="new_address" name="new_address" rows="4" required>{{ venue.address }}</textarea>
+
+            <label for="new_price">New Price:</label>
+            <input type="text" id="new_price" name="new_price" value="{{ venue.price }}" required>
+
+            <button type="submit">Update Venue</button>
+        </form>
+    </div>
+
+</body>
+</html>
